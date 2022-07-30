@@ -1,0 +1,4 @@
+.terraform*
+terraform.tfstate*
+
+example_servers.txt
