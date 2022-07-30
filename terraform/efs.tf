@@ -4,7 +4,7 @@ resource "aws_efs_file_system" "filesystem" {
   }
 }
 
-resource "aws_efs_access_point" "test" {
+resource "aws_efs_access_point" "access" {
   file_system_id = aws_efs_file_system.filesystem.id
 }
 
@@ -19,7 +19,10 @@ resource "aws_security_group" "efs" {
   vpc_id = module.vpc.vpc_id
 
   ingress {
-    security_groups = [aws_security_group.containers.id]
+    security_groups = [
+      aws_security_group.containers.id,
+      aws_security_group.lambda.id
+    ]
     from_port = 2049
     to_port   = 2049
     protocol  = "tcp"

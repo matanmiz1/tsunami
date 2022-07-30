@@ -33,7 +33,12 @@ resource "aws_ecs_task_definition" "this" {
     {
       name        = var.project_name
       image       = "${data.aws_ecr_repository.this.repository_url}:latest"
-      # environment =  # TODO
+      environment =  [
+        {
+          "name": "S3_URI",
+          "value": var.s3_uri
+        }
+      ]
       essential   = true
       mountPoints = [
           {

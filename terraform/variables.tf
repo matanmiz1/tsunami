@@ -18,3 +18,5 @@ variable "vpc_public_subnets" {
   description = "List of public subnets to reside ECS cluster"
   type        = list(string)
 }
+
+variable "s3_uri" {}

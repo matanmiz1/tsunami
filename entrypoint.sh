@@ -1,6 +1,6 @@
 #!/bin/bash
 
-servers=$(aws s3 cp s3://tsunami-servers/servers.txt -)
+servers=$(aws s3 cp ${S3_URI} -)
 timestamp=$(date +"%d%m%y%H%M%S")
 
 if [ ! -d "/usr/tsunami/logs/${timestamp}" ] ; then
