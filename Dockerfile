@@ -41,5 +41,3 @@ COPY entrypoint.sh .
 RUN chmod +x /usr/tsunami/entrypoint.sh
 
 ENTRYPOINT ["/usr/tsunami/entrypoint.sh"]
-#ENTRYPOINT ["java", "-cp", "tsunami.jar:plugins/*", "-Dtsunami-config.location=tsunami.yaml", "com.google.tsunami.main.cli.TsunamiCli"]
-#CMD ["--ip-v4-target=127.0.0.1", "--scan-results-local-output-format=JSON", "--scan-results-local-output-filename=logs/tsunami-output.json"]
