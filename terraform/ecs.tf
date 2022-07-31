@@ -82,4 +82,9 @@ resource "aws_ecs_service" "this" {
   lifecycle {
     ignore_changes = [desired_count]
   }
+
+  depends_on = [
+    module.vpc,
+    aws_efs_mount_target.mount
+  ]
 }
