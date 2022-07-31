@@ -56,7 +56,7 @@ This project creates resources in AWS:
      ```
      docker build -t <account>.dkr.ecr.<region>.amazonaws.com/tsunami:latest .
      aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account>.dkr.ecr.<region>.amazonaws.com
-     docker push 883241448326.dkr.ecr.eu-west-1.amazonaws.com/tsunami:latest
+     docker push <account>.dkr.ecr.<region>.amazonaws.com/tsunami:latest
      ```
 
 ### Deploy resources
