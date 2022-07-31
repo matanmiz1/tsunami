@@ -9,8 +9,8 @@ resource "aws_efs_access_point" "access" {
 }
 
 resource "aws_efs_mount_target" "mount" {
-  file_system_id = aws_efs_file_system.filesystem.id
-  subnet_id      = module.vpc.private_subnets[0]
+  file_system_id  = aws_efs_file_system.filesystem.id
+  subnet_id       = module.vpc.private_subnets[0]
   security_groups = [aws_security_group.efs.id]
 }
 

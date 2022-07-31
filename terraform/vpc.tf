@@ -6,8 +6,8 @@ module "vpc" {
   azs  = ["${var.aws_region}b"]
   cidr = var.vpc_cidr
 
-  private_subnets  = var.vpc_private_subnets
-  public_subnets   = var.vpc_public_subnets
+  private_subnets = var.vpc_private_subnets
+  public_subnets  = var.vpc_public_subnets
 
   enable_dns_hostnames = true
   enable_dns_support   = true

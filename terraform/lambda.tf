@@ -33,7 +33,7 @@ resource "aws_lambda_function" "this" {
   }
 
   file_system_config {
-    arn = aws_efs_access_point.access.arn
+    arn              = aws_efs_access_point.access.arn
     local_mount_path = "/mnt/efs"
   }
 

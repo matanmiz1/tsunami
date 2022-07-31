@@ -1,4 +1,6 @@
-variable "aws_region" {}
+variable "aws_region" {
+  description = "AWS region to deploy the resources to"
+}
 
 variable "ecr_name" {}
 
@@ -19,4 +21,6 @@ variable "vpc_public_subnets" {
   type        = list(string)
 }
 
-variable "s3_uri" {}
+variable "s3_uri" {
+  description = "S3 URI of the servers file"
+}

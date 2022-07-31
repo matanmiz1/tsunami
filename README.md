@@ -15,13 +15,13 @@ In this project I copied the Dockerfile and added an entrypoint.sh to allow read
 and run the scanner on each one of them. The logs are written to a local filesystem.
 
 I run the container over ECS cluster, using an EFS as the output path for the scanner's results.
-The lambda runs over the results (EFS mounted) and prints whether vulnerabilities were found in those.
+A lambda runs over the results (EFS mounted) and prints whether vulnerabilities were found in those.
 
 ## Current Status
 
 *   Official Tsunami is in 'pre-alpha' release for developer preview.
 *   Tsunami project is currently under active development.
-*   Tsunami's files are from version 0.0.12
+*   Tsunami's files used are from version 0.0.12
 
 ## AWS Resources
 
@@ -36,27 +36,27 @@ This project creates resources in AWS:
 ## How to run this deployment
 
 ### Prerequisites
- 1.  Create a S3 bucket in your target region and copy there a list of servers to scan:
-
-     ```
-     aws s3 cp ./example_servers.txt s3://<bucket>/servers.txt
-     ```
-
- 2.  Create an ECR in your target region and upload the image:
-
-     ```
-     docker build -t <account>.dkr.ecr.<region>.amazonaws.com/tsunami:latest .
-     aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account>.dkr.ecr.<region>.amazonaws.com
-     docker push 883241448326.dkr.ecr.eu-west-1.amazonaws.com/tsunami:latest
-     ```
-
- 3.  Create a 'vulnerable' EC2.
+ 1.  (Optional) Create a 'vulnerable' EC2.
      Don't forget to open ports 22 & 8888 in it security group.
 
      ```
      sudo apt update
      sudo apt install docker.io -y
      sudo docker run --name unauthenticated-jupyter-notebook -p 8888:8888 -d jupyter/base-notebook start-notebook.sh --NotebookApp.token=''
+     ```
+
+ 2.  Create a S3 bucket in your target region and copy there a list of servers to scan:
+
+     ```
+     aws s3 cp ./example_servers.txt s3://<bucket>/servers.txt
+     ```
+
+ 3.  Create an ECR in your target region and upload the image:
+
+     ```
+     docker build -t <account>.dkr.ecr.<region>.amazonaws.com/tsunami:latest .
+     aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account>.dkr.ecr.<region>.amazonaws.com
+     docker push 883241448326.dkr.ecr.eu-west-1.amazonaws.com/tsunami:latest
      ```
 
 ### Deploy resources
@@ -108,7 +108,7 @@ limitations under the License.
 Tsunami is not an official Google product.
 
 Tsunami's files are taken from the git repo!
-I changed only the Dockerfile & entrypoint.sh.
+I edited the Dockerfile & entrypoint.sh.
 
 ## Next versions / TODOs
 

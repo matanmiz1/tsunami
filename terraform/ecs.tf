@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "this" {
-  name = "${var.project_name}"
+  name = var.project_name
 }
 
 resource "aws_security_group" "containers" {
@@ -31,20 +31,20 @@ resource "aws_ecs_task_definition" "this" {
 
   container_definitions = jsonencode([
     {
-      name        = var.project_name
-      image       = "${data.aws_ecr_repository.this.repository_url}:latest"
-      environment =  [
+      name  = var.project_name
+      image = "${data.aws_ecr_repository.this.repository_url}:latest"
+      environment = [
         {
-          "name": "S3_URI",
-          "value": var.s3_uri
+          "name" : "S3_URI",
+          "value" : var.s3_uri
         }
       ]
-      essential   = true
+      essential = true
       mountPoints = [
-          {
-              "containerPath": "/usr/tsunami/logs/",
-              "sourceVolume": "efs"
-          }
+        {
+          "containerPath" : "/usr/tsunami/logs/",
+          "sourceVolume" : "efs"
+        }
       ],
       logConfiguration = {
         logDriver = "awslogs",
@@ -58,10 +58,10 @@ resource "aws_ecs_task_definition" "this" {
   ])
 
   volume {
-    name      = "efs"
+    name = "efs"
 
     efs_volume_configuration {
-      file_system_id          = aws_efs_file_system.filesystem.id
+      file_system_id = aws_efs_file_system.filesystem.id
     }
   }
 }
